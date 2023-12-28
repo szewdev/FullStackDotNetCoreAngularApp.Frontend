@@ -79,7 +79,7 @@ FullStackDotNetCoreAngularApp.Frontend is a modern web application built using *
     npm install
     ng serve
 
-The application should be available at the default address: http://localhost:4200/.
+The application should be available at the default address: `http://localhost:4200/`.
 
 ### Testing
 
