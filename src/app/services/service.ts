@@ -5,7 +5,7 @@ import {HttpClient} from "@angular/common/http";
     providedIn: 'root'
 })
 export class Service {
-    protected apiUrl = 'http://localhost:5000/api/products';
+    protected apiUrl = 'http://localhost:5093/api/products';
 
     constructor(protected http: HttpClient) {
     }
