@@ -79,7 +79,7 @@ FullStackDotNetCoreAngularApp.Frontend is a modern web application built using *
     npm install
     ng serve
 
-### Running
+### Testing
 
     ng test
 
