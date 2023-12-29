@@ -1,7 +1,14 @@
-<nav>
-  <ul>
-    <li><a routerLink="/products">List of All Products</a></li>
-    <li><a routerLink="/add-product">Add New Product</a></li>
-  </ul>
-</nav>
+<div class="navbar bg-base-300">
+  <div class="flex-1">
+    <a routerLink="/" class="btn btn-ghost text-xl">Products.Frontend</a>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal px-1">
+      <li><a routerLink="/products" [routerLinkActiveOptions]="{exact : true}" routerLinkActive="active">List of All
+        Products</a></li>
+      <li><a routerLink="/products/add" [routerLinkActiveOptions]="{exact : true}" routerLinkActive="active">Add New
+        Product</a></li>
+    </ul>
+  </div>
+</div>
 <router-outlet></router-outlet>

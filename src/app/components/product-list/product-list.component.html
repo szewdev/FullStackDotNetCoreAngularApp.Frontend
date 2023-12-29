@@ -1,8 +1,48 @@
-<div class="container">
-    <h2>Product List</h2>
-    <ul>
-        <li *ngFor="let product of products">
-            {{ product.name }} - ${{ product.price }}
-        </li>
-    </ul>
-</div>
+<div class="container mx-auto px-4 space-y-4">
+  <h1 class="text-5xl font-bold">Products List</h1>
+  <div class="overflow-x-auto">
+    <table class="table table-zebra">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <span *ngIf="products.length == 0" class="loading loading-bars loading-lg"></span>
+      <tr *ngFor="let product of products">
+        <th>{{ product.id }}</th>
+        <td>{{ product.name }}</td>
+        <td>${{ product.price }}</td>
+        <td>
+          <a routerLink="/products/{{product.id}}">
+            <div class="tooltip" data-tip="View product details">
+
+              <button class="btn btn-active btn-neutral">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                </svg>
+              </button>
+            </div>
+          </a>
+          <a routerLink="/products/{{product.id}}/edit" style="margin-left: 10px">
+            <div class="tooltip" data-tip="Edit product data">
+              <button class="btn btn-active btn-neutral">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"/>
+                </svg>
+              </button>
+            </div>
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
