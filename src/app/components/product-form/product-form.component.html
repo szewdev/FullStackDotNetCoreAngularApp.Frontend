@@ -1,1 +1,41 @@
-<h2>Product Form</h2>
+<div class="container mx-auto px-4">
+  <h1 class="text-5xl font-bold">Create Product</h1>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="grid grid-cols-1 gap-4">
+      <div class="label">
+        <span class="label-text">Name</span>
+      </div>
+      <input type="text" formControlName="name"
+             class="input input-bordered input-primary w-full max-w-xs"/>
+      <div class="label">
+        <span class="label-text">Price</span>
+      </div>
+      <input type="number" formControlName="price"
+             class="input input-bordered input-primary w-full max-w-xs"/>
+      <div class="label">
+        <span class="label-text">Description</span>
+      </div>
+      <textarea formControlName="description" class="textarea textarea-primary"></textarea>
+      <div>
+        <button type="submit" class="btn btn-primary">Add new product</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="toast toast-bottom toast-end">
+    <div *ngIf="submitted && success" role="alert" class="alert alert-success">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <span>Product has been successfully added!</span>
+    </div>
+      <div *ngIf="submitted && !success" role="alert" class="alert alert-error">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span>Error! Product not saved.</span>
+      </div>
+  </div>
+</div>
