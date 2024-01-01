@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {ProductService} from "../../services/product.service";
 import {NgClass, NgIf} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Product} from "../../models/product.model";
 
 @Component({
   selector: 'app-product-form',
@@ -38,13 +39,10 @@ export class ProductFormComponent implements OnInit {
       return;
     }
     this.productService.addProduct(this.productForm.value).subscribe({
-      next: (data: any) => {
+      next: (data: Product) => {
         console.log(data);
         this.success = true;
-        setTimeout(() => {
-            this.router.navigate(['/products']);
-          },
-          1500);
+        this.router.navigate([`/products/${data.id}`]);
       },
       error: (error: any) => {
         console.error('Error adding product!', error);
