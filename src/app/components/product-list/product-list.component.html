@@ -11,9 +11,10 @@
       </tr>
       </thead>
       <tbody>
-      <span *ngIf="products.length == 0" class="loading loading-bars loading-lg"></span>
-      <tr *ngFor="let product of products">
-        <th>{{ product.id }}</th>
+      <span *ngIf="!isComplete && products.length == 0" class="loading loading-bars loading-lg"></span>
+      <p *ngIf="isComplete && products.length == 0">No records.</p>
+      <tr *ngFor="let product of products; index as i">
+        <th>{{ i + 1 }}</th>
         <td>{{ product.name }}</td>
         <td>${{ product.price }}</td>
         <td>

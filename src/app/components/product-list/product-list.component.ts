@@ -19,6 +19,7 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
+  isComplete: boolean = false;
 
   constructor(private productService: ProductService) {
   }
@@ -32,8 +33,9 @@ export class ProductListComponent implements OnInit {
       error: (e) => {
         console.error(e);
       },
-      complete() {
+      complete: () => {
         console.log("is completed");
+        this.isComplete = true;
       },
     });
   }
