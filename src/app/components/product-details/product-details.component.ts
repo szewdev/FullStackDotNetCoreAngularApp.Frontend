@@ -25,7 +25,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     const productId = Number(this.route.snapshot.paramMap.get('id'));
     if (!productId) {
-      this.router.navigate(['/products']);
+      this.router.navigate(['/products']).then(()=>{});
       return;
     }
 

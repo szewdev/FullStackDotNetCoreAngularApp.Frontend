@@ -12,14 +12,14 @@ export class ProductService extends Service {
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl).pipe(
       tap(_ => console.log('fetched products')),
-      catchError(this.handleError<Product[]>('getProducts', []))
+      catchError(this.handleError<Product[]>('getProducts'))
     );
   }
 
   getProduct(productId: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/${productId}`).pipe(
       tap(_ => console.log('fetched product')),
-      catchError(this.handleError<Product>('getProduct', undefined))
+      catchError(this.handleError<Product>('getProduct'))
     );
   }
 
@@ -32,12 +32,12 @@ export class ProductService extends Service {
 
   updateProduct(product: Product, id?: number): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, product).pipe(
-      tap(_ => console.log(`updated product id=${product.id}`)),
+      tap(_ => console.log(`updated product id=${id}`)),
       catchError(this.handleError<any>('updateProduct'))
     );
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation') {
     return (error: any): Observable<T> => {
       console.error(error);
       console.log(`${operation} failed: ${error.message}`);

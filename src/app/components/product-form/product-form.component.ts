@@ -35,7 +35,7 @@ export class ProductFormComponent implements OnInit {
     if (this.router.url.endsWith('edit')) {
       this.productId = Number(this.route.snapshot.paramMap.get('id'));
       if (!this.productId) {
-        this.router.navigate(['/products']);
+        this.router.navigate(['/products']).then(()=>{});
         return;
       }
 
@@ -77,7 +77,7 @@ export class ProductFormComponent implements OnInit {
       next: (data: Product) => {
         console.log(data);
         this.success = true;
-        this.router.navigate([`/products/${data.id}`]);
+        this.router.navigate([`/products/${data.id}`]).then(()=>{});
       },
       error: (error: any) => {
         console.error('Error adding product!', error);
@@ -91,7 +91,7 @@ export class ProductFormComponent implements OnInit {
       next: (data: Product) => {
         console.log(data);
         this.success = true;
-        this.router.navigate([`/products/${this.productId}`]);
+        this.router.navigate([`/products/${this.productId}`]).then(()=>{});
       },
       error: (error: any) => {
         console.error('Error updating product!', error);
