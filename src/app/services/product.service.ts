@@ -30,8 +30,8 @@ export class ProductService extends Service {
     );
   }
 
-  updateProduct(product: Product): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${product.id}`, product).pipe(
+  updateProduct(product: Product, id?: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, product).pipe(
       tap(_ => console.log(`updated product id=${product.id}`)),
       catchError(this.handleError<any>('updateProduct'))
     );

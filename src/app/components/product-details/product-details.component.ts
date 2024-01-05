@@ -16,21 +16,20 @@ import {NgForOf, NgIf} from "@angular/common";
   styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent implements OnInit {
-  productId: number | null = null;
-  product: Product | undefined = undefined;
+  product: Product | undefined;
 
   constructor(private route: ActivatedRoute, private router: Router, private productService: ProductService) {
 
   }
 
   ngOnInit(): void {
-    this.productId = Number(this.route.snapshot.paramMap.get('id'));
-    if (!this.productId) {
+    const productId = Number(this.route.snapshot.paramMap.get('id'));
+    if (!productId) {
       this.router.navigate(['/products']);
       return;
     }
 
-    this.productService.getProduct(this.productId).subscribe({
+    this.productService.getProduct(productId).subscribe({
       next: (product: Product) => {
         console.log(product);
         this.product = product;

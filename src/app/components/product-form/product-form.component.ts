@@ -17,12 +17,14 @@ import {Product} from "../../models/product.model";
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
+  productId: number | undefined;
   productForm: FormGroup;
   submitted = false;
   success = false;
+  editMode = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private productService: ProductService) {
-    this.productForm = this.formBuilder.group({
+    this.productForm = this.formBuilder.group({ //TODO ksz define & use product-form.model.ts
       name: ['', [Validators.required, Validators.minLength(2)]],
       price: ['', [Validators.required, Validators.min(0.01)]],
       description: []
@@ -30,7 +32,32 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //todo ksz edit product
+    if (this.router.url.endsWith('edit')) {
+      this.productId = Number(this.route.snapshot.paramMap.get('id'));
+      if (!this.productId) {
+        this.router.navigate(['/products']);
+        return;
+      }
+
+      this.editMode = true;
+
+      this.productService.getProduct(this.productId).subscribe({
+        next: (product: Product) => {
+          console.log(product);
+          this.productForm.patchValue({
+            name: product.name,
+            price: product.price,
+            description: product.description
+          })
+        },
+        error: (e) => {
+          console.error(e);
+        },
+        complete() {
+          console.log("is completed");
+        },
+      });
+    }
   }
 
   onSubmit() {
@@ -38,6 +65,14 @@ export class ProductFormComponent implements OnInit {
     if (this.productForm.invalid) {
       return;
     }
+    if (this.editMode) {
+      this.update();
+    } else {
+      this.create();
+    }
+  }
+
+  private create() {
     this.productService.addProduct(this.productForm.value).subscribe({
       next: (data: Product) => {
         console.log(data);
@@ -46,6 +81,20 @@ export class ProductFormComponent implements OnInit {
       },
       error: (error: any) => {
         console.error('Error adding product!', error);
+        this.success = false;
+      }
+    });
+  }
+
+  private update() {
+    this.productService.updateProduct(this.productForm.value, this.productId).subscribe({
+      next: (data: Product) => {
+        console.log(data);
+        this.success = true;
+        this.router.navigate([`/products/${this.productId}`]);
+      },
+      error: (error: any) => {
+        console.error('Error updating product!', error);
         this.success = false;
       }
     });
