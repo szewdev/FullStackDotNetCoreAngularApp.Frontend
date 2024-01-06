@@ -97,9 +97,10 @@ This project is licensed under the MIT License.
 ## Screenshots
 
 ![create_form](https://raw.githubusercontent.com/szewdev/FullStackDotNetCoreAngularApp.Frontend/main/readme/create_form.png)
-![validation_error](https://raw.githubusercontent.com/szewdev/FullStackDotNetCoreAngularApp.Frontend/main/readme/validation_error.png)
 ![create_form_2](https://raw.githubusercontent.com/szewdev/FullStackDotNetCoreAngularApp.Frontend/main/readme/create_form_2.png)
+![create_form_3](https://raw.githubusercontent.com/szewdev/FullStackDotNetCoreAngularApp.Frontend/main/readme/create_form_3.png)
 ![details](https://raw.githubusercontent.com/szewdev/FullStackDotNetCoreAngularApp.Frontend/main/readme/details.png)
+![details_2](https://raw.githubusercontent.com/szewdev/FullStackDotNetCoreAngularApp.Frontend/main/readme/details_2.png)
 ![list](https://raw.githubusercontent.com/szewdev/FullStackDotNetCoreAngularApp.Frontend/main/readme/list.png)
 ![edit_form](https://raw.githubusercontent.com/szewdev/FullStackDotNetCoreAngularApp.Frontend/main/readme/edit_form.png)
 

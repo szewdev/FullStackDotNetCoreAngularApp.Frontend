@@ -22,6 +22,9 @@
       <textarea formControlName="description" class="textarea textarea-primary"></textarea>
       <div>
         <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update' : 'Add new' }} product</button>
+        <a routerLink="/products" style="margin-left: 10px">
+            <button class="btn btn-ghost">Cancel</button>
+        </a>
       </div>
     </div>
   </form>

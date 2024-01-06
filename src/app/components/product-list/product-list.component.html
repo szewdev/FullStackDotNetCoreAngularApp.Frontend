@@ -1,5 +1,18 @@
 <div class="container mx-auto px-4 space-y-4">
-  <h1 class="text-5xl font-bold">Products List</h1>
+  <h1 class="text-5xl font-bold">Products List
+    <a routerLink="/products/add" style="float: right">
+      <div class="tooltip" data-tip="Add new product">
+        <button class="btn btn-success">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+               stroke="currentColor"
+               class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+          </svg>
+          Create
+        </button>
+      </div>
+    </a>
+  </h1>
   <div class="overflow-x-auto">
     <table class="table table-zebra">
       <thead>
@@ -25,7 +38,15 @@
       </div>
       <tr *ngFor="let product of products; index as i">
         <th>{{ i + 1 }}</th>
-        <td>{{ product.name }}</td>
+        <td>{{ product.name }}
+          <div style="margin-left: 10px" *ngIf="!product?.isActive" class="badge badge-error gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                 class="inline-block w-4 h-4 stroke-current">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+            deleted
+          </div>
+        </td>
         <td>${{ product.price }}</td>
         <td>
           <a routerLink="/products/{{product.id}}">

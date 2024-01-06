@@ -33,6 +33,32 @@ export class ProductDetailsComponent implements OnInit {
     this.getProductData(productId);
   }
 
+  onDelete() {
+    if (this.product) {
+      this.productService.deleteProduct(this.product.id).subscribe({
+        next: (data: any) => {
+          this.product!.isActive = false;
+        },
+        error: (error: any) => {
+          console.error('Error deleting product!', error);
+        }
+      });
+    }
+  }
+
+  onRestore() {
+    if (this.product) {
+      this.productService.restoreProduct(this.product.id).subscribe({
+        next: (data: any) => {
+          this.product!.isActive = true;
+        },
+        error: (error: any) => {
+          console.error('Error restoring product!', error);
+        }
+      });
+    }
+  }
+
   private getProductData(productId: number) {
     this.productService.getProduct(productId).subscribe({
       next: (product: Product) => {

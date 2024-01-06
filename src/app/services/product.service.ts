@@ -37,6 +37,20 @@ export class ProductService extends Service {
     );
   }
 
+  deleteProduct(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`).pipe(
+      tap(_ => console.log(`deleted product id=${id}`)),
+      catchError(this.handleError<any>('deleteProduct'))
+    );
+  }
+
+  restoreProduct(id: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${id}`, null).pipe(
+      tap(_ => console.log(`restored product id=${id}`)),
+      catchError(this.handleError<any>('restoreProduct'))
+    );
+  }
+
   private handleError<T>(operation = 'operation') {
     return (error: any): Observable<T> => {
       console.error(error);

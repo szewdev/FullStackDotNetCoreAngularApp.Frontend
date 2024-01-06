@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ProductService} from "../../services/product.service";
 import {NgClass, NgIf} from "@angular/common";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {Product} from "../../models/product.model";
 
 @Component({
@@ -12,7 +12,8 @@ import {Product} from "../../models/product.model";
   imports: [
     ReactiveFormsModule,
     NgIf,
-    NgClass
+    NgClass,
+    RouterLink
   ],
   styleUrls: ['./product-form.component.css']
 })
