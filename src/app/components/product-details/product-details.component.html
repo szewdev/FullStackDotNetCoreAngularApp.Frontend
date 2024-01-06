@@ -22,7 +22,6 @@
       </a>
     </div>
     <div class="col-start-5">
-      <!-- TODO ksz delete or restore product -->
       <div class="tooltip" [attr.data-tip]="product?.isActive ? 'Mark product as deleted' : 'Restore product'">
         <button (click)="product?.isActive ? onDelete() : onRestore()"
                 class="btn btn-outline {{product?.isActive ? 'btn-error' : 'btn-success'}}">
