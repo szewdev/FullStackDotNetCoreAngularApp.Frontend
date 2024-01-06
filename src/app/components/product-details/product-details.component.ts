@@ -25,10 +25,15 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     const productId = Number(this.route.snapshot.paramMap.get('id'));
     if (!productId) {
-      this.router.navigate(['/products']).then(()=>{});
+      this.router.navigate(['/products']).then(() => {
+      });
       return;
     }
 
+    this.getProductData(productId);
+  }
+
+  private getProductData(productId: number) {
     this.productService.getProduct(productId).subscribe({
       next: (product: Product) => {
         console.log(product);
@@ -36,6 +41,9 @@ export class ProductDetailsComponent implements OnInit {
       },
       error: (e) => {
         console.error(e);
+        this.router.navigate(['/products']).then(() => {
+        });
+        return;
       },
       complete() {
         console.log("is completed");
